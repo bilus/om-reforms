@@ -51,7 +51,7 @@
                                                  :source-map    true
                                                  :optimizations :none}}
                                  :validation
-                                 {:source-paths ["examples/shared/" "examples/validation/src" "src"]
+                                 {:source-paths ["examples/shared/" "examples/validation/src" "src" #_"../reforms/src"]
                                   :compiler     {:output-to     "examples/validation/out/main.js"
                                                  :output-dir    "examples/validation/out"
                                                  :source-map    true
