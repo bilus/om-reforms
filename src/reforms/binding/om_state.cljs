@@ -10,7 +10,7 @@
             [om.core :as om]))
 
 (extend-type default
-  reforms.binding.protocol/IBinding
+  IBinding
   (-valid? [this]
     (or (om/cursor? this) (om/component? this)))
   (-deref [this]
