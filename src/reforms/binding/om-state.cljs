@@ -4,22 +4,32 @@
 ;  By using this software in any fashion, you are agreeing to be bound by the terms of this license.
 ;  You must not remove this notice, or any other, from this software.
 
-(ns reforms.binding.om
+(ns reforms.binding.om-state
+  "EXPERIMENTAL: Binding to local state."
   (:require [reforms.binding.protocol :refer [IBinding]]
             [om.core :as om]))
 
 (extend-type default
-  IBinding
+  reforms.binding.protocol/IBinding
   (-valid? [this]
-    (om/cursor? this))
+    (or (om/cursor? this) (om/component? this)))
   (-deref [this]
-    @this)
+    (if (om/cursor? this)
+      @this
+      (om/get-state this)))
   (-reset!
     ([this v]
-     (om/update! this v))
+     (if (om/cursor? this)
+       (om/update! this v)
+       (om/set-state! this v)))
     ([this ks v]
-     (om/update! this ks v)))
+     (if (om/cursor? this)
+       (om/update! this ks v)
+       (om/set-state! this ks v))))
   (-get-in [this ks]
-    (get-in this ks))
+    (if (om/cursor? this)
+      (get-in this ks)
+      (om/get-state this ks)))
   (-path [this]
-    (om/path this)))
+    (when (om/cursor? this)
+      (om/path this))))

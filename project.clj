@@ -5,7 +5,7 @@
                       :url  "http://www.eclipse.org/legal/epl-v10.html"}
             :dependencies [[org.clojure/clojure "1.7.0-RC1"]
                            [org.clojure/clojurescript "0.0-3308"]
-                           [reforms "0.3.0-SNAPSHOT"]
+                           ;[reforms "0.3.0-SNAPSHOT"]
                            [org.omcljs/om "0.8.8" :scope "provided"]
                            [sablono "0.3.4"]]
             :jar-exclusions [#"\.cljx|\.swp|\.swo|\.DS_Store"]
@@ -27,7 +27,7 @@
             :aliases {"cljsbuild" ["with-profile" "dev" "cljsbuild"]}
 
             :cljsbuild {:builds {:hello-world
-                                 {:source-paths ["examples/shared/" "examples/hello_world/src" "src"]
+                                 {:source-paths ["examples/shared/" "examples/hello_world/src" "src" "../reforms/src"]
                                   :compiler     {:output-to     "examples/hello_world/out/main.js"
                                                  :output-dir    "examples/hello_world/out"
                                                  :source-map    true
@@ -54,6 +54,13 @@
                                  {:source-paths ["examples/shared/" "examples/validation/src" "src" #_"../reforms/src"]
                                   :compiler     {:output-to     "examples/validation/out/main.js"
                                                  :output-dir    "examples/validation/out"
+                                                 :source-map    true
+                                                 :optimizations :none}}
+
+                                 :local_state
+                                 {:source-paths ["examples/shared/" "examples/local_state/src" "src" #_"../reforms/src"]
+                                  :compiler     {:output-to     "examples/local_state/out/main.js"
+                                                 :output-dir    "examples/local_state/out"
                                                  :source-map    true
                                                  :optimizations :none}}}})
 
