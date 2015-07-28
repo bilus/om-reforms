@@ -21,7 +21,7 @@
                           [:div (rand-int 40)]
                           (f/form
                             {:on-submit #(js/alert "Submitted")}
-                            (f/text "Your name" "Type your name here" owner [:name])
+                            (f/text "Your name" owner [:name] :placeholder "Type your name here")
                             (f/form-buttons
                               (f/button-primary "Submit" #(js/alert (:name (om/get-state owner))))
                               (f/button-default "Cancel" #(js/alert "Cancel!")))

@@ -32,7 +32,7 @@
     <orderEntry type="library" name="Leiningen: org.clojure/core.async:0.1.346.0-17112a-alpha" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Leiningen: org.omcljs/om:0.8.8" level="project" />
-    <orderEntry type="library" name="Leiningen: reforms:0.3.0-20150622.155341-17" level="project" />
+    <orderEntry type="library" name="Leiningen: reforms:0.4.0-20150725.220854-1" level="project" />
     <orderEntry type="library" name="Leiningen: sablono:0.3.4" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.javascript/closure-compiler:v20150505" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/data.json:0.2.6" level="project" />
