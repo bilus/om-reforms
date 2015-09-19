@@ -3,28 +3,32 @@
 (ns examples.local-state
   (:require [reforms.om :include-macros true :as f]
             [reforms.binding.om-state]                      ; Enable binding to local state.
+            [reforms.validation :as v :include-macros true]
             [om.core :include-macros true :as om]
             [sablono.core :refer-macros [html]]))
 
 (def app-state (atom {}))
 
-(defn simple-view
+(defn local-state-demo-view
   [_data owner]
   (reify
     om/IRenderState
     (render-state [_ state]
       (html
         (f/with-options {:form {:horizontal (:orientation-horizontal state)}}
-                        (f/panel
-                          "Binding to local state"
-                          (f/form
-                            {:on-submit #(js/alert "Submitted")}
-                            (f/text "Your name" owner [:name] :placeholder "Type your name here")
-                            (f/form-buttons
-                              (f/button-primary "Submit" #(js/alert (:name (om/get-state owner))))
-                              (f/button-default "Cancel" #(js/alert "Cancel!")))
-                            (f/checkbox "Horizontal form" owner [:orientation-horizontal]))
-                          [:pre (:name state)]))))))
+          (f/panel
+            "Binding to local state"
+            (v/form
+              owner
+              {:on-submit #(js/alert "Submitted")}
+              (v/text "Your name" owner [:name] :placeholder "Type your name here")
+              (f/form-buttons
+                (f/button-primary "Submit" #(when (v/validate! owner owner
+                                                              (v/present [:name] "Enter your name"))
+                                             (js/alert (:name (om/get-state owner)))))
+                (f/button-default "Cancel" #(js/alert "Cancel!")))
+              (v/checkbox "Horizontal form" owner [:orientation-horizontal]))
+            [:pre (:name state)]))))))
 
 (defn main-view
   [app-state _owner]
@@ -35,7 +39,7 @@
         [:div
          [:br]
          [:br]
-         (om/build simple-view (:data app-state))]))))
+         (om/build local-state-demo-view (:data app-state))]))))
 
 (om/root
   main-view
