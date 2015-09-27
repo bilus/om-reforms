@@ -19,6 +19,11 @@
      (om/update! this v))
     ([this ks v]
      (om/update! this ks v)))
+  (-swap!
+    ([this f]
+     (om/transact! this f))
+    ([this ks f]
+     (om/transact! this ks f)))
   (-get-in [this ks]
     (get-in this ks))
   (-path [this]

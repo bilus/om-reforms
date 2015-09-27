@@ -26,6 +26,15 @@
      (if (om/cursor? this)
        (om/update! this ks v)
        (om/set-state! this ks v))))
+  (-swap!
+    ([this f]
+     (if (om/cursor? this)
+       (om/transact! this f)
+       (om/set-state! this (f (om/get-state this)))))
+    ([this ks f]
+     (if (om/cursor? this)
+       (om/transact! this ks f)
+       (om/set-state! this ks (f (om/get-state this))))))
   (-get-in [this ks]
     (if (om/cursor? this)
       (get-in this ks)
