@@ -48,6 +48,15 @@
           (t/table [{:name "Tom" :id 1} {:name "Jerry" :id 2} {:name "Mickey" :id 3} {:name "Minnie" :id 4}]
                    :columns {:name "Hero name"})
 
+          [:h4 "Styled table"]
+          [:div "See "
+           [:a {:href "http://getbootstrap.com/css/#tables"
+                :target "_blank"}
+            "Bootstrap tables"]]
+          (t/table {:key "styled-table" :class "table-striped table-bordered"}
+                   [{:name "Tom" :id 1} {:name "Jerry" :id 2} {:name "Mickey" :id 3} {:name "Minnie" :id 4}]
+                   :columns {:name "Hero name"})
+
           [:h4 "Table with row selection"]
           (t/table [{:name "Tom" :id 1} {:name "Jerry" :id 2} {:name "Mickey" :id 3} {:name "Minnie" :id 4}]
                    :columns {:name "Hero name"}
