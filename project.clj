@@ -1,13 +1,13 @@
-(defproject om-reforms "0.4.1"                     ;; Keep in sync with reforms.
+(defproject om-reforms "0.4.3"                     ;; Keep in sync with reforms.
             :description "Reforms bindings for Om."
             :url "http://bilus.github.io/reforms/"
             :license {:name "Eclipse Public License"
                       :url  "http://www.eclipse.org/legal/epl-v10.html"}
-            :dependencies [[org.clojure/clojure "1.7.0"]
-                           [org.clojure/clojurescript "1.7.122"]
-                           [reforms "0.4.1"]
+            :dependencies [[org.clojure/clojure "1.7.0" :scope "provided"]
+                           [org.clojure/clojurescript "1.7.122" :scope "provided"]
+                           [reforms "0.4.3"]
                            [org.omcljs/om "0.8.8" :scope "provided"]
-                           [sablono "0.3.4"]]
+                           [sablono "0.3.4" :scope "provided"]]
             :jar-exclusions [#"\.cljx|\.swp|\.swo|\.DS_Store"]
             :auto-clean false
             :source-paths ["src"]
